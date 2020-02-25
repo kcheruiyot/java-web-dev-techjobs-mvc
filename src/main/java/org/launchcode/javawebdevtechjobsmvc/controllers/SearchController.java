@@ -34,15 +34,9 @@ public class SearchController {
         }else {
             jobs = JobData.findByColumnAndValue(searchType, searchTerm);
         }
-        String searchColumn;
-        if(searchType.toLowerCase().equals("corecompetency")){
-            searchColumn = "Skill";
-        }else {
-            searchColumn = searchType;
-        }
         model.addAttribute("columns", columnChoices);
         model.addAttribute("jobs",jobs);
-        model.addAttribute("title", "Jobs With " +searchColumn +": " +searchTerm);
+        model.addAttribute("title", "Jobs With " +columnChoices.get(searchType) +": " +searchTerm);
         model.addAttribute("checked",searchType);
         return "search";
     }
